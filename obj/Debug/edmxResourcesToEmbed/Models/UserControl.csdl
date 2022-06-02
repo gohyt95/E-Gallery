@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArtGalleryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="addressId" />
+    </Key>
+    <Property Name="addressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="custId" Type="Int32" />
+    <Property Name="street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="postalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Address_ToTable" FromRole="Address" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Art">
+    <Key>
+      <PropertyRef Name="artId" />
+    </Key>
+    <Property Name="artId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="artistId" Type="Int32" Nullable="false" />
+    <Property Name="artName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Double" />
+    <Property Name="stock" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="medium" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="picture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="width" Type="Int32" />
+    <Property Name="height" Type="Int32" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Artist" Relationship="Self.FK_Art_ToTable" FromRole="Art" ToRole="Artist" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToTable_1" FromRole="Art" ToRole="Cart" />
+    <NavigationProperty Name="Customers" Relationship="Self.Wishlist" FromRole="Art" ToRole="Customer" />
+    <Property Name="isDelete" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="artistId" />
+    </Key>
+    <Property Name="artistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="artistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="artistEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="artistPassword" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="artistPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Arts" Relationship="Self.FK_Art_ToTable" FromRole="Artist" ToRole="Art" />
+    <Property Name="artistPicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="cartId" />
+    </Key>
+    <Property Name="cartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="custId" Type="Int32" />
+    <Property Name="artId" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="orderId" Type="Int32" />
+    <Property Name="itemStatus" Type="Int32" />
+    <NavigationProperty Name="Art" Relationship="Self.FK_Cart_ToTable_1" FromRole="Cart" ToRole="Art" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Cart_ToTable" FromRole="Cart" ToRole="Customer" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Cart_ToTable_2" FromRole="Cart" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="custId" />
+    </Key>
+    <Property Name="custId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="custEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="custPassword" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="custPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_ToTable" FromRole="Customer" ToRole="Address" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToTable" FromRole="Customer" ToRole="Cart" />
+    <NavigationProperty Name="Arts" Relationship="Self.Wishlist" FromRole="Customer" ToRole="Art" />
+    <Property Name="custPicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="totalPrice" Type="Double" />
+    <Property Name="orderDate" Type="DateTime" Precision="3" />
+    <Property Name="shipTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_ToTable_2" FromRole="Orders" ToRole="Cart" />
+  </EntityType>
+  <Association Name="FK_Address_ToTable">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="custId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="custId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Art_ToTable">
+    <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
+    <End Role="Art" Type="Self.Art" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="artistId" />
+      </Principal>
+      <Dependent Role="Art">
+        <PropertyRef Name="artistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_ToTable_1">
+    <End Role="Art" Type="Self.Art" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Art">
+        <PropertyRef Name="artId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="artId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_ToTable">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="custId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="custId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_ToTable_2">
+    <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="orderId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Wishlist">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <End Role="Art" Type="Self.Art" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ArtGalleryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Arts" EntityType="Self.Art" />
+    <EntitySet Name="Artists" EntityType="Self.Artist" />
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <AssociationSet Name="FK_Address_ToTable" Association="Self.FK_Address_ToTable">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Art_ToTable" Association="Self.FK_Art_ToTable">
+      <End Role="Artist" EntitySet="Artists" />
+      <End Role="Art" EntitySet="Arts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_ToTable_1" Association="Self.FK_Cart_ToTable_1">
+      <End Role="Art" EntitySet="Arts" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_ToTable" Association="Self.FK_Cart_ToTable">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_ToTable_2" Association="Self.FK_Cart_ToTable_2">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="Wishlist" Association="Self.Wishlist">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Art" EntitySet="Arts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

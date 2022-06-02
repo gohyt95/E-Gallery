@@ -1,0 +1,514 @@
+﻿@import "_config.scss";
+
+.art {
+
+    &-heading {
+        margin-top: 24px;
+        color: black;
+    }
+
+    &-filter {
+        .filter-collapsible {
+            margin-top: 8px;
+            margin-bottom: 8px;
+
+            .art-collapse-btn {
+                @include leftRightEdge;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                p {
+                    font-size: 17px;
+                    margin: 0;
+                }
+
+                i {
+                    transition-duration: 0.5s;
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    &-content {
+        @include leftRightEdge;
+        flex-wrap: wrap;
+
+        .card {
+            margin-bottom: 16px;
+            transition-duration: 0.3s;
+
+            &:hover {
+                box-shadow: $light-shadow;
+                transform: scale(1.03);
+            }
+
+            .card-img-top {
+                width: 255px;
+                height: 255px;
+                object-fit: cover;
+                transition-duration: 0.3s;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+
+            .card-body {
+                padding: 12px;
+                width: 255px;
+
+                a, p {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    display: block;
+                    font-size: 16px;
+                    color: black;
+                    transition-duration: 0.3s;
+                    margin-bottom: 4px;
+                }
+
+                a:hover {
+                    color: $artPrimary;
+                    text-decoration: none;
+                }
+
+                .art-name {
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                }
+
+                .art-price {
+                    color: $artPrimary;
+                }
+            }
+        }
+    }
+
+    .art-pagination {
+
+        .pagination {
+            button, p {
+                color: $artPrimary;
+            }
+
+            p {
+                margin-bottom: 0;
+                line-height: 1.25;
+                border: 0;
+                margin-left: 0px;
+
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+
+            .page-item.active > .page-link {
+                background-color: $artPrimary;
+                border-color: $artPrimary;
+                color: white;
+            }
+
+            .page-item.disabled > button {
+                color: black;
+            }
+        }
+    }
+}
+
+.art-NoResult {
+    visibility: hidden;
+}
+
+.artDetail {
+    p {
+        font-size: 16px;
+    }
+
+    h5 {
+        letter-spacing: 2px;
+        font-weight: normal;
+        font-size: 16px;
+    }
+
+    .artPicture {
+        display: flex;
+        flex-direction: column;
+
+        img {
+            width: 100%;
+            height: auto;
+            transition-duration: 0.3s;
+
+            &:hover {
+                opacity: 0.7;
+                cursor: zoom-in;
+            }
+        }
+    }
+
+    &-heading {
+        @include leftRightEdge;
+        align-items: center;
+
+        .artName {
+            font-family: "EB Garamond";
+            font-weight: 600;
+        }
+
+        .artFavouriteBtn {
+            height: 30px;
+            width: 30px;
+            font-size: 16px;
+            line-height: 28px;
+            outline: none;
+            border: 1px solid $artPrimary;
+            background-color: white;
+            color: $artPrimary;
+            position: relative;
+            transition-duration: 0.2s;
+
+            p {
+                position: absolute;
+                left: -16px;
+                font-size: 12px;
+                opacity: 0;
+                visibility: hidden;
+                transition-duration: 0.2s;
+            }
+
+            &:hover {
+                opacity: 0.7;
+            }
+
+            &:hover p {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+    &-artist {
+        
+    }
+
+    &-pricing {
+        @include leftRightEdge;
+        align-content: center;
+
+        .artPrice {
+            line-height: inherit;
+
+            &:before {
+                content: "RM ";
+            }
+        }
+    }
+
+    &-quantity {
+        p {
+            line-height: 30px;
+        }
+    }
+
+    .artDetail-collapse-btn {
+        @include leftRightEdge;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        h5 {
+            margin-bottom: 0;
+        }
+
+        i {
+            transition-duration: 0.5s;
+            transform: rotate(180deg);
+        }
+    }
+
+
+    .artMaterial:before {
+        content: "Material: ";
+    }
+
+    .artMedium:before {
+        content: "Medium: ";
+    }
+
+    .artStyle:before {
+        content: "Style: ";
+    }
+
+    &-pictureModal {
+        background-color: #000000aa;
+        overflow: hidden !important;
+
+        .modal-dialog {
+            max-width: 90%;
+            min-height: 90%;
+            width: 90%;
+            height: 90%;
+            margin: auto;
+
+            .modal-content {
+                height: 90%;
+                background-color: #000000aa;
+                margin-top: auto;
+
+                .modal-body {
+                    width: 100%;
+
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                        border: 1px solid black;
+
+                        &:hover {
+                            cursor: zoom-in;
+                        }
+                    }
+
+                    .closeModal {
+                        position: absolute;
+                        top: 0;
+                        color: #ffffff;
+                        font-size: 30px;
+                    }
+
+                    .artDetailPictureZoom {
+                        width: 100%;
+                        height: 100%;
+                        background-repeat: no-repeat;
+                        margin-left: auto;
+                        margin-right: auto;
+
+                        .instruction {
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            border: 1px solid #888888;
+
+                            h1 {
+                                font-size: 30px;
+                                color: #eeeeee;
+                            }
+
+                            .iconCombine {
+                                position: relative;
+                                margin-bottom: 5rem;
+
+                                i {
+                                    color: #888888;
+                                    font-size: 150px;
+                                }
+
+                                .fa-search-plus {
+                                    position: absolute;
+                                    color: #eeeeee;
+                                    font-size: 100px;
+                                    left: 100px;
+                                    bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cart {
+    &-content {
+
+        .cart-item {
+            p {
+                margin-bottom: 4px;
+            }
+
+            a {
+                font-weight: bold;
+                font-size: 18px;
+                color: black;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            img {
+                object-fit: cover;
+                width: 120px;
+                height: 120px;
+            }
+        }
+    }
+
+    .cart-summary {
+
+        h1 {
+            line-height: 35px;
+        }
+
+        &-content {
+
+            p {
+                margin-bottom: 0;
+                font-size: 16px;
+            }
+
+            .price {
+                font-size: 24px;
+                color: $artPrimary;
+            }
+
+            a {
+                width: 210px;
+            }
+        }
+    }
+}
+
+.empty-cart {
+    visibility: hidden;
+}
+
+.checkout {
+    &-collapse-btn {
+        background-color: #f8f9fa;
+        padding: 16px;
+        margin: 0 -15px;
+    }
+
+    &-header {
+        .checkoutProcess {
+            height: 50px;
+            margin-bottom: 32px;
+        }
+    }
+
+    &-orderContent {
+        .checkout-collapse-btn {
+            i {
+                transition-duration: 0.5s;
+                transform: rotate(180deg);
+                line-height: 24px;
+            }
+        }
+
+        .checkout-orderItem {
+            p {
+                margin-bottom: 4px;
+
+                &:first-child {
+                    font-weight: bold;
+                    font-size: 18px;
+                    color: black;
+                }
+            }
+
+            img {
+                object-fit: cover;
+                width: 120px;
+                height: 120px;
+            }
+        }
+    }
+
+    &-summary {
+        background-color: #f8f9fa;
+        padding: 8px 16px;
+
+        h1 {
+            line-height: 35px;
+            font-size: 20px;
+        }
+
+        &-content {
+
+            p {
+                margin-bottom: 0;
+                font-size: 16px;
+            }
+
+            .price {
+                font-size: 24px;
+                color: $artPrimary;
+            }
+
+            a {
+                width: 210px;
+            }
+        }
+    }
+
+    &-address {
+        input[type=text] {
+            max-width: none;
+            width: 100%;
+        }
+
+        #rbCheckoutAddress {
+            input {
+                margin-right: 8px;
+                margin-bottom: 16px;
+            }
+        }
+
+        &-action {
+            background-color: #f8f9fa;
+            padding: 16px;
+        }
+
+        .checkout-final {
+            p {
+                font-size: 16px;
+            }
+
+            #orderTotalFinal {
+                font-size: 24px;
+                color: $artPrimary;
+            }
+        }
+    }
+}
+
+.payment {
+    input {
+        max-width: none;
+    }
+
+    .rbBank {
+        input {
+            margin-right: 16px;
+            margin-bottom: 16px;
+        }
+
+        td {
+            img {
+                margin-right: 8px;
+            }
+
+            label {
+                margin-bottom: 16px;
+            }
+        }
+    }
+
+    .creditCardForm {
+        input {
+            margin-bottom: 16px;
+        }
+
+        input:first-child {
+            margin-right: 8px;
+        }
+    }
+}

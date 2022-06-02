@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArtGalleryModel1StoreContainer" CdmEntityContainer="ArtGalleryEntities1">
+    <EntitySetMapping Name="Wishlists">
+      <EntityTypeMapping TypeName="ArtGalleryModel1.Wishlist">
+        <MappingFragment StoreEntitySet="Wishlist">
+          <ScalarProperty Name="custId" ColumnName="custId" />
+          <ScalarProperty Name="artId" ColumnName="artId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

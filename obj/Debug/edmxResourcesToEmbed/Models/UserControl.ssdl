@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArtGalleryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="addressId" />
+    </Key>
+    <Property Name="addressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="custId" Type="int" />
+    <Property Name="street" Type="nvarchar(max)" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="nvarchar" MaxLength="50" />
+    <Property Name="postalCode" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Art">
+    <Key>
+      <PropertyRef Name="artId" />
+    </Key>
+    <Property Name="artId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="artistId" Type="int" Nullable="false" />
+    <Property Name="artName" Type="nvarchar" MaxLength="50" />
+    <Property Name="price" Type="float" />
+    <Property Name="stock" Type="int" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="material" Type="nvarchar" MaxLength="50" />
+    <Property Name="medium" Type="nvarchar" MaxLength="50" />
+    <Property Name="style" Type="nvarchar" MaxLength="50" />
+    <Property Name="picture" Type="nvarchar" MaxLength="50" />
+    <Property Name="width" Type="int" />
+    <Property Name="height" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="isDelete" Type="int" />
+  </EntityType>
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="artistId" />
+    </Key>
+    <Property Name="artistId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="artistName" Type="nvarchar" MaxLength="50" />
+    <Property Name="artistEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="artistPassword" Type="nvarchar" MaxLength="128" />
+    <Property Name="artistPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="country" Type="nvarchar" MaxLength="50" />
+    <Property Name="artistPicture" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="cartId" />
+    </Key>
+    <Property Name="cartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="custId" Type="int" />
+    <Property Name="artId" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="orderId" Type="int" />
+    <Property Name="itemStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="custId" />
+    </Key>
+    <Property Name="custId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="custEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="custPassword" Type="nvarchar" MaxLength="128" />
+    <Property Name="custPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="custPicture" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="totalPrice" Type="float" />
+    <Property Name="orderDate" Type="datetime" />
+    <Property Name="shipTo" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\WEB APPLICATION DEVELOPMENT\WEBAPPASSIGNMENT\APP_DATA\ARTGALLERY.MDF.dbo.Wishlist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Wishlist">
+    <Key>
+      <PropertyRef Name="custId" />
+      <PropertyRef Name="artId" />
+    </Key>
+    <Property Name="custId" Type="int" Nullable="false" />
+    <Property Name="artId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Address_ToTable">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="custId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="custId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Art_ToTable">
+    <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
+    <End Role="Art" Type="Self.Art" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="artistId" />
+      </Principal>
+      <Dependent Role="Art">
+        <PropertyRef Name="artistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_ToTable">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="custId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="custId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_ToTable_1">
+    <End Role="Art" Type="Self.Art" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Art">
+        <PropertyRef Name="artId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="artId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_ToTable_2">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="orderId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wishlist_ToTable">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="custId" />
+      </Principal>
+      <Dependent Role="Wishlist">
+        <PropertyRef Name="custId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wishlist_ToTable_1">
+    <End Role="Art" Type="Self.Art" Multiplicity="1" />
+    <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Art">
+        <PropertyRef Name="artId" />
+      </Principal>
+      <Dependent Role="Wishlist">
+        <PropertyRef Name="artId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ArtGalleryModelStoreContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Art" EntityType="Self.Art" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wishlist" EntityType="Self.Wishlist" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Wishlist].[custId] AS [custId], 
+    [Wishlist].[artId] AS [artId]
+    FROM [dbo].[Wishlist] AS [Wishlist]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Address_ToTable" Association="Self.FK_Address_ToTable">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Art_ToTable" Association="Self.FK_Art_ToTable">
+      <End Role="Artist" EntitySet="Artist" />
+      <End Role="Art" EntitySet="Art" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_ToTable" Association="Self.FK_Cart_ToTable">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_ToTable_1" Association="Self.FK_Cart_ToTable_1">
+      <End Role="Art" EntitySet="Art" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_ToTable_2" Association="Self.FK_Cart_ToTable_2">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wishlist_ToTable" Association="Self.FK_Wishlist_ToTable">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Wishlist" EntitySet="Wishlist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wishlist_ToTable_1" Association="Self.FK_Wishlist_ToTable_1">
+      <End Role="Art" EntitySet="Art" />
+      <End Role="Wishlist" EntitySet="Wishlist" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

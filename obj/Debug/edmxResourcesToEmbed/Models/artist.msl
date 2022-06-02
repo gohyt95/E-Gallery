@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArtGalleryModel1StoreContainer" CdmEntityContainer="ArtGalleryEntities1">
+    <EntitySetMapping Name="Artists">
+      <EntityTypeMapping TypeName="ArtGalleryModel1.Artist">
+        <MappingFragment StoreEntitySet="Artist">
+          <ScalarProperty Name="artistId" ColumnName="artistId" />
+          <ScalarProperty Name="artistName" ColumnName="artistName" />
+          <ScalarProperty Name="artistEmail" ColumnName="artistEmail" />
+          <ScalarProperty Name="artistPassword" ColumnName="artistPassword" />
+          <ScalarProperty Name="artistPhone" ColumnName="artistPhone" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="country" ColumnName="country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

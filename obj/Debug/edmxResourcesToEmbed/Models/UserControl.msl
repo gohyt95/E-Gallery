@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArtGalleryModelStoreContainer" CdmEntityContainer="ArtGalleryEntities">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="ArtGalleryModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="addressId" ColumnName="addressId" />
+          <ScalarProperty Name="custId" ColumnName="custId" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Arts">
+      <EntityTypeMapping TypeName="ArtGalleryModel.Art">
+        <MappingFragment StoreEntitySet="Art">
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="artId" ColumnName="artId" />
+          <ScalarProperty Name="artistId" ColumnName="artistId" />
+          <ScalarProperty Name="artName" ColumnName="artName" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="material" ColumnName="material" />
+          <ScalarProperty Name="medium" ColumnName="medium" />
+          <ScalarProperty Name="style" ColumnName="style" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artists">
+      <EntityTypeMapping TypeName="ArtGalleryModel.Artist">
+        <MappingFragment StoreEntitySet="Artist">
+          <ScalarProperty Name="artistPicture" ColumnName="artistPicture" />
+          <ScalarProperty Name="artistId" ColumnName="artistId" />
+          <ScalarProperty Name="artistName" ColumnName="artistName" />
+          <ScalarProperty Name="artistEmail" ColumnName="artistEmail" />
+          <ScalarProperty Name="artistPassword" ColumnName="artistPassword" />
+          <ScalarProperty Name="artistPhone" ColumnName="artistPhone" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="country" ColumnName="country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="ArtGalleryModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="cartId" ColumnName="cartId" />
+          <ScalarProperty Name="custId" ColumnName="custId" />
+          <ScalarProperty Name="artId" ColumnName="artId" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="itemStatus" ColumnName="itemStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="ArtGalleryModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="custPicture" ColumnName="custPicture" />
+          <ScalarProperty Name="custId" ColumnName="custId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="custEmail" ColumnName="custEmail" />
+          <ScalarProperty Name="custPassword" ColumnName="custPassword" />
+          <ScalarProperty Name="custPhone" ColumnName="custPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="ArtGalleryModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+          <ScalarProperty Name="shipTo" ColumnName="shipTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Wishlist" TypeName="ArtGalleryModel.Wishlist" StoreEntitySet="Wishlist">
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="custId" ColumnName="custId" />
+      </EndProperty>
+      <EndProperty Name="Art">
+        <ScalarProperty Name="artId" ColumnName="artId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

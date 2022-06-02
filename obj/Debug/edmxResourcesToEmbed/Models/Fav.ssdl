@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArtGalleryModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\USER\SOURCE\REPOS\WEB APPLICATION DEVELOPMENT\WEBAPPASSIGNMENT\APP_DATA\ARTGALLERY.MDF.dbo.Wishlist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Wishlist">
+    <Key>
+      <PropertyRef Name="custId" />
+      <PropertyRef Name="artId" />
+    </Key>
+    <Property Name="custId" Type="int" Nullable="false" />
+    <Property Name="artId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ArtGalleryModel1StoreContainer">
+    <EntitySet Name="Wishlist" EntityType="Self.Wishlist" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Wishlist].[custId] AS [custId], 
+    [Wishlist].[artId] AS [artId]
+    FROM [dbo].[Wishlist] AS [Wishlist]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

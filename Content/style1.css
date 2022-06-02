@@ -1,0 +1,234 @@
+﻿.goldone {
+    color: #c8af6a;
+}
+
+.custom-footer{
+    columns: 30em;
+}
+
+.custom-footer h2{
+    column-span: all;
+}
+
+.custom-asp-btn {
+    border: none;
+    background: none;
+    text-decoration: none;
+    font-family: "EB Garamond";
+    font-size:large;
+}
+
+.custom-font {
+    font-family: "EB Garamond";
+}
+
+.font-bold{
+    font-weight:bold;
+}
+
+.custom-login-btn {
+    background-color: #c8af6a;
+    border-color: #c8af6a;
+    color: white;
+    font-size: 0.7em;
+    max-width: 100%;
+    width: 90%;
+    letter-spacing: 2px;
+}
+
+.custom-login-btn:focus {
+    box-shadow:none;
+}
+
+.custom-login-btn:visited {
+    outline: none;
+}
+
+.custom-login-btn:hover {
+    color:white;
+}
+
+.custom-login-btn:active {
+    outline:none;
+}
+
+.navi-signup {
+    font-size: 0.9em;
+    font-family: "EB Garamond";
+}
+
+.sign-up-nav {
+    border: none;
+    background: none;
+    text-decoration: underline;
+    color: black;
+    font-family: "EB Garamond";
+    margin:0;
+    padding: 0;
+}
+
+.sign-up-nav:link {
+    color: black;
+}
+
+.sign-up-nav:visited {
+    color: black;
+}
+
+.sign-up-nav:hover {
+    color: black;
+}
+
+.sign-up-nav:active {
+    color: black;
+}
+
+.validation-msg {
+    color: red;
+    font-size: 0.8em;
+    font-family: "EB Garamond";
+}
+
+.custom-field1 {
+    font-family: "EB Garamond";
+    max-width:100%;
+    width:90%;
+}
+
+.custom-field1:focus {
+    box-shadow:none;
+    outline:none;
+}
+
+.navbar-fontsize{
+    font-size:1.2em;
+    font-weight:500;
+}
+
+.forgot-pass {
+    border: none;
+    background: none;
+    font-family: "EB Garamond";
+    font-size:small;
+    margin-top:0;
+    padding-top:0;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
+}
+
+.card-setting {
+    border: none;
+    outline:none;
+    background-color: whitesmoke;
+}
+
+.ctm-list {
+    position: relative;
+    display: block;
+    padding: 0.25rem 1.25rem;
+    margin: 0.2rem 0;
+    background-color: #fff;
+    border: none;
+    border-left:2px solid lightgrey;
+}
+
+.ctm-list.active {
+    z-index: 2;
+    color: #495057;
+    background-color: #fff;
+    border-color: #c8af6a;
+}
+
+.ctm-list-action {
+    width: 100%;
+    color: #495057;
+    text-align: inherit;
+}
+
+.ctm-list-action:hover, .ctm-list-action:focus {
+    z-index: 1;
+    color: #495057;
+    text-decoration: none;
+    background-color: #fff;
+}
+
+.ctm-list-action:active {
+    color: #212529;
+    background-color: #fff;
+    border-left: 2px solid #c8af6a;
+}
+
+.hidden-control{
+    display:none;
+    visibility:hidden;
+}
+
+.landing-image {
+    width: 100%;
+    height: 18vw;
+    object-fit: cover;
+}
+
+.landing-title {
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+.landing-setting{
+    border:none;
+    outline:none;
+}
+
+.landing-bottom-setting {
+    background-color: #ceded4;
+    border: none;
+    outline: none;
+}
+
+.landing-browse-link{
+    color: black;
+}
+
+.landing-browse-link:link {
+    color: black;
+}
+
+.landing-browse-link:visited {
+    color: black;
+}
+
+.landing-browse-link:hover {
+    color: #c8af6a;
+}
+
+.landing-browse-link:active {
+    color: black;
+}
+
+.carousel-btn{
+    color:black;
+    text-decoration: none;
+}
+
+.carousel-btn:hover {
+    color: black;
+    text-decoration: none;
+}
+
+#orderTotalFinal1 {
+    font-size: 24px;
+    color: #c8af6a
+}
+
+.artist-profile-img {
+    width: 180px;
+    height: 180px;
+    object-fit:cover;
+    border-radius:50%;
+}

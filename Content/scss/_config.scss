@@ -1,0 +1,153 @@
+﻿$artPrimary: #c8af6a;
+$shadow-color: #00000028;
+$light-shadow: 0 3px 6px $shadow-color;
+
+.hiddenTextField {
+    display: none;
+}
+
+@mixin leftRightEdge {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btnPrimary {
+    background-color: $artPrimary;
+    border-color: $artPrimary;
+    color: white;
+
+    &:hover {
+        color: white;
+        background-color: darken($artPrimary, 10%);
+    }
+}
+
+.btnPrimaryLink {
+    color: $artPrimary;
+    background-color: white;
+    border: 1px solid $artPrimary;
+
+    &:hover {
+        color: white;
+        background-color: $artPrimary;
+    }
+}
+
+.btnLinkPrimary {
+    color: $artPrimary;
+    background-color: transparent;
+    border: 0;
+
+    &:hover {
+        color: darken($artPrimary, 10%);
+    }
+}
+
+.inputNumber {
+    display: flex;
+    width: 150px;
+
+    button {
+        background-color: white;
+        border: 1px solid #cccccc;
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+
+        &:last-child {
+            margin-left: -2px;
+        }
+    }
+
+    input {
+        width: 100%;
+        height: 32px;
+        border: 1px solid #cccccc;
+        text-align: center;
+        margin-left: -1px;
+    }
+}
+
+.toast {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 16px auto;
+}
+
+.artDetailTitleKit {
+    letter-spacing: 2px;
+}
+
+.progressBar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .progressLine {
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        border-bottom: 2px solid #ACACA6;
+        z-index:-1;
+
+        .percent {
+            box-sizing: content-box;
+            position: absolute;
+            width: 200px;
+            height: 100%;
+            border-bottom: 2px solid $artPrimary;
+            z-index: 1;
+        }
+
+        .percent-2 {
+            width: 400px;
+        }
+
+        .percent-3 {
+            width: 600px;
+        }
+    }
+
+    .steps {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        width: 600px;
+
+        .step {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 2px solid #ACACA6;
+            border-radius: 50%;
+            position: relative;
+
+            p {
+                position: absolute;
+                left: 0;
+                top: 20px;
+                width: 200px;
+            }
+        }
+
+        .step-current {
+            border: 2px solid $artPrimary;
+        }
+
+        .step-completed {
+            border: 2px solid $artPrimary;
+            background-color: $artPrimary;
+        }
+    }
+}
+
+.artistProfilePic {
+    object-fit: cover;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
